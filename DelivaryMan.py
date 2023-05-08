@@ -25,7 +25,7 @@ class DelivaryMan:
         return self.current_order is None
 
     @property
-    def delivary_status(self):
+    def delivary_status(self) -> OrderStatus:
         if self.current_order is None:
             return OrderStatus.FREE
         else:

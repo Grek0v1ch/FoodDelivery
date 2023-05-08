@@ -8,10 +8,10 @@ class DelivaryManager(metaclass=MetaSingleton):
         self.__inactive_delivers: list[DelivaryMan] = []
         self.__orders_queue: list[Order] = []
 
-    def add_delivaryman(self, deliveryman: DelivaryMan):
+    def add_delivaryman(self, deliveryman: DelivaryMan) -> None:
         self.__inactive_delivers.append(deliveryman)
 
-    def tick(self):
+    def tick(self) -> None:
         for deliveryman in self.__active_delivers:
             deliveryman.tick()
             if deliveryman.delivary_status == OrderStatus.FREE:
@@ -22,7 +22,7 @@ class DelivaryManager(metaclass=MetaSingleton):
                 else:
                     self.__inactive_delivers.append(deliveryman)
 
-    def process_order(self, order: Order):
+    def process_order(self, order: Order) -> None:
         if len(self.__inactive_delivers) > 0:
             deliverman = self.__inactive_delivers.pop()
             deliverman.current_order = order
