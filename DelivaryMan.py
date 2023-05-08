@@ -9,8 +9,24 @@ class TransportType(Enum):
     AFOOT = 4
 
 
+class OrderStatus(Enum):
+    FREE = 0
+    EXECUTING = 1
+
+
 @dataclass
 class DelivaryMan:
-    curr_order: Order
+    current_order: Order
     transport: TransportType
     time: int
+
+    @property
+    def is_free(self) -> bool:
+        return self.current_order is None
+
+    @property
+    def delivary_status(self):
+        if self.current_order is None:
+            return OrderStatus.FREE
+        else:
+            return OrderStatus.EXECUTING
