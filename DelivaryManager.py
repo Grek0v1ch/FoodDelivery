@@ -1,4 +1,4 @@
-from DelivaryMan import DelivaryMan, OrderStatus
+from DelivaryMan import DelivaryMan
 from MetaSingleton import MetaSingleton
 
 
@@ -6,7 +6,7 @@ class DelivaryManager(metaclass=MetaSingleton):
     def __init__(self):
         self.__active_delivers: list[DelivaryMan] = []
         self.__inactive_delivers: list[DelivaryMan] = []
-        self.__orders_queue: list[Order] = []
+        self.__orders_queue: list[int] = []
 
     def add_delivaryman(self, deliveryman: DelivaryMan) -> None:
         self.__inactive_delivers.append(deliveryman)
@@ -14,19 +14,17 @@ class DelivaryManager(metaclass=MetaSingleton):
     def tick(self) -> None:
         for deliveryman in self.__active_delivers:
             deliveryman.tick()
-            if deliveryman.delivary_status == OrderStatus.FREE:
-                deliveryman.current_order = None
             if deliveryman.is_free:
-                if len(self.__orders_queue) > 0:
-                    deliveryman.current_task = self.__orders_queue.pop()
-                else:
-                    self.__inactive_delivers.append(deliveryman)
+                self.__inactive_delivers.append(deliveryman)
 
-    def process_order(self, order: Order) -> None:
+    def process_order(self, order: int, road_length: float) -> None:
+        self.tick()
         if len(self.__inactive_delivers) > 0:
-            deliverman = self.__inactive_delivers.pop()
-            deliverman.current_order = order
-            self.__active_delivers.append(deliverman)
+            deliveryman = self.__inactive_delivers.pop()
+            deliveryman.current_order = order
+            # 13 - средняя скорость человека(затычка для расчета времени пути)
+            deliveryman.timer_start(road_length)
+            self.__active_delivers.append(deliveryman)
         else:
             self.__orders_queue.append(order)
 

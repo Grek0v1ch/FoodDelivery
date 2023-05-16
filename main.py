@@ -1,16 +1,24 @@
-# This is a sample Python script.
+import json
 
-# Press F5 to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from DelivaryMan import DelivaryMan, TransportType
+from DelivaryManager import DelivaryManager
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+manager = DelivaryManager()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+with open('DelivaryMans.json', 'r') as f:
+    text = json.load(f)
+
+man = DelivaryMan(text["area"], text["current_order"], text["transport"],
+                  text["order_time"], text["time_start"])
+manager.add_delivaryman(man)
+manager.process_order(1, 0.1)
+while man.current_order:
+    man.tick()
+print('Yes')
+manager.tick()
+manager.process_order(1, 0.5)
+while man.current_order:
+    man.tick()
+print('Yes')
