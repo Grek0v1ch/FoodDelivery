@@ -1,11 +1,12 @@
+from CreatorID import CreatorID
 from Order import Order
 
 
 class OrderBuilder:
     def __int__(self):
-        self.__order: Order = Order(1)
+        self.__order: Order = Order(CreatorID.generate_order_id())
 
-    def add_grocery_retailer(self, grocery_retailer_id: int):
+    def add_grocery_retailer(self, grocery_retailer_id: tuple[str]):
         self.__order.grocery_retailer_id = grocery_retailer_id
 
     def add_area(self, area: int):
