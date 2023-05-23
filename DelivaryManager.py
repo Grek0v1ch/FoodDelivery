@@ -1,30 +1,33 @@
+from typing import Optional, Union
+
+from Area import Area
 from DelivaryMan import DelivaryMan
 from MetaSingleton import MetaSingleton
+from Order import Order
 
 
 class DelivaryManager(metaclass=MetaSingleton):
     def __init__(self):
-        self.__active_delivers: list[DelivaryMan] = []
-        self.__inactive_delivers: list[DelivaryMan] = []
+        self.areas: Optional[list[Area]] = []
         self.__orders_queue: list[int] = []
 
     def add_delivaryman(self, deliveryman: DelivaryMan) -> None:
-        self.__inactive_delivers.append(deliveryman)
+        self.areas[deliveryman.area].add_delivaryman(deliveryman)
 
     def tick(self) -> None:
-        for deliveryman in self.__active_delivers:
-            deliveryman.tick()
-            if deliveryman.is_free:
-                self.__inactive_delivers.append(deliveryman)
+        for area in self.areas:
+            area.tick()
 
-    def process_order(self, order: int, road_length: float) -> None:
+    def process_order(self, order: Order, road_length: float) -> Union[DelivaryMan, bool]:
         self.tick()
-        if len(self.__inactive_delivers) > 0:
-            deliveryman = self.__inactive_delivers.pop()
+        deliveryman = self.areas[Order.area].find_delivaryman(road_length)
+        if Order.area != 0 and not isinstance(deliveryman, DelivaryMan):
+            deliveryman = self.areas[Order.area - 1].find_delivaryman(3000)
+        if Order.area != len(self.areas) - 1 and not isinstance(deliveryman, DelivaryMan):
+            deliveryman = self.areas[Order.area + 1].find_delivaryman(3000)
+        if isinstance(deliveryman, DelivaryMan):
             deliveryman.current_order = order
-            # 13 - средняя скорость человека(затычка для расчета времени пути)
             deliveryman.timer_start(road_length)
-            self.__active_delivers.append(deliveryman)
-        else:
-            self.__orders_queue.append(order)
+        return deliveryman
+
 

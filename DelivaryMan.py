@@ -18,7 +18,7 @@ def translate_hours_to_seconds(hours: float) -> float:
 class DelivaryMan:
     area: int
     current_order: bool  # Order
-    transport: TransportType
+    transport: str
     order_time: float
     time_start: float
 
@@ -26,16 +26,16 @@ class DelivaryMan:
     def is_free(self) -> bool:
         return self.current_order is False
 
-    def timer_start(self, road_length: float):
+    def timer_start(self, road_length: float) -> None:
         self.time_start = time.time()
         # 60, 45, 20, 13 - средние скорости транспортных средств
-        if self.transport == TransportType.CAR.value:
+        if self.transport == TransportType.CAR.name:
             self.order_time = road_length / 60
-        elif self.transport == TransportType.SCOOTER.value:
+        elif self.transport == TransportType.SCOOTER.name:
             self.order_time = road_length / 45
-        elif self.transport == TransportType.BICYCLE.value:
+        elif self.transport == TransportType.BICYCLE.name:
             self.order_time = road_length / 20
-        elif self.transport == TransportType.AFOOT.value:
+        elif self.transport == TransportType.AFOOT.name:
             self.order_time = road_length / 13
         # перевод в секунды
         self.order_time = translate_hours_to_seconds(self.order_time)
