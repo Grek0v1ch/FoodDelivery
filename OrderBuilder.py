@@ -3,7 +3,7 @@ from Order import Order
 
 
 class OrderBuilder:
-    def __int__(self):
+    def __init__(self):
         self.__order: Order = Order(CreatorID.generate_order_id())
 
     def add_grocery_retailer(self, grocery_retailer_id: tuple[str]):
