@@ -16,3 +16,7 @@ class GroceryRetailer:
             grocery_retailer_type
         self.__menu: list[Product] = menu
         self.__stop_list: list[Product] = stop_list
+
+    def __str__(self):
+        return f'Имя: {self.__name}, Тип: {self.__grocery_retailer_type}, ' \
+               f'Меню: {self.__menu}, Стоп лист: {self.__stop_list}'
