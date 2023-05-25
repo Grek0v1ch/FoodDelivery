@@ -4,7 +4,7 @@ from Product import Product
 
 
 class GroceryRetailer:
-    def __int__(
+    def __init__(
             self, name: str,
             grocery_retailer_type: GroceryRetailerType,
             menu: list[Product],
