@@ -10,7 +10,8 @@
                 "composition": "milk"
             }
         ],
-        "stop_list": []
+        "stop_list": [],
+        "area": 0
     },
     {
         "name": "Magnit",
@@ -23,6 +24,7 @@
                 "composition": "water, flour, yeast"
             }
         ],
-        "stop_list": []
+        "stop_list": [],
+        "area": 1
     }
 ]
