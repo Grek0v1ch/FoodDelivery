@@ -21,3 +21,7 @@ class OrderBuilder:
 
     def add_price(self, price: float):
         self.__order.price = price
+
+    @property
+    def order(self) -> Order:
+        return self.__order
