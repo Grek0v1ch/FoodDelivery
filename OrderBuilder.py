@@ -1,5 +1,6 @@
 from CreatorID import CreatorID
 from Order import Order
+from Product import Product
 
 
 class OrderBuilder:
@@ -12,7 +13,7 @@ class OrderBuilder:
     def add_area(self, area: int):
         self.__order.area = area
 
-    def add_product(self, product: bool):
+    def add_product(self, product: Product):
         self.__order.current_product = product
 
     def add_time_cooking(self, time_cooking: int):
