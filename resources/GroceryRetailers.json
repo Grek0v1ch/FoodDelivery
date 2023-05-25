@@ -8,6 +8,30 @@
                 "price": 60,
                 "weight": 1000,
                 "composition": "milk"
+            },
+            {
+                "name": "Potato",
+                "price": 27.99,
+                "weight": 1000,
+                "composition": "potato"
+            },
+            {
+                "name": "Orange juice",
+                "price": 120,
+                "weight": 900,
+                "composition": "orange, water, sugar"
+            },
+            {
+                "name": "Toothpaste",
+                "price": 292.6,
+                "weight": 75,
+                "composition": "water, sorbitol, silica, glycerin"
+            },
+            {
+                "name": "Sunflower oil",
+                "price": 129,
+                "weight": 750,
+                "composition": "sunflower oil refined deodorized, food extract"
             }
         ],
         "stop_list": [],
@@ -22,9 +46,285 @@
                 "price": 40,
                 "weight": 500,
                 "composition": "water, flour, yeast"
+            },
+            {
+                "name": "Potato",
+                "price": 41.99,
+                "weight": 1000,
+                "composition": "potato"
+            },
+            {
+                "name": "Apple juice",
+                "price": 100,
+                "weight": 750,
+                "composition": "apple, water, sugar"
+            },
+            {
+                "name": "Toilet paper",
+                "price": 199.99,
+                "weight": 796,
+                "composition": "cellulose"
+            },
+            {
+                "name": "Mayonnaise",
+                "price": 131,
+                "weight": 400,
+                "composition": "sunflower oil, egg, milk, sugar, salt"
+            },
+            {
+                "name": "Potato chips",
+                "price": 74.45,
+                "weight": 80,
+                "composition": "potatoes, vegetable oil, glucose, salt"
             }
         ],
         "stop_list": [],
         "area": 1
+    },
+    {
+        "name": "Dixy",
+        "type": 0,
+        "menu": [
+            {
+                "name": "Milk",
+                "price": 60,
+                "weight": 1000,
+                "composition": "milk"
+            },
+            {
+                "name": "Eggs",
+                "price": 90,
+                "weight": 650,
+                "composition": "eggs"
+            },
+            {
+                "name": "Chocolate bar",
+                "price": 126.99,
+                "weight": 90,
+                "composition": "sugar, milk, cocoa butter, nuts"
+            },
+            {
+                "name": "Toothpaste",
+                "price": 301,
+                "weight": 75,
+                "composition": "water, sorbitol, silica, glycerin"
+            },
+            {
+                "name": "Cheese",
+                "price": 166.55,
+                "weight": 200,
+                "composition": "milk, salt, sourdough, milk-clotting enzyme"
+            }
+        ],
+        "stop_list": [],
+        "area": 2
+    },
+    {
+        "name": "Globus",
+        "type": 0,
+        "menu": [
+            {
+                "name": "Cottage cheese",
+                "price": 117.99,
+                "weight": 200,
+                "composition": "milk, sourdough"
+            },
+            {
+                "name": "Radish",
+                "price": 79.99,
+                "weight": 500,
+                "composition": "radish"
+            },
+            {
+                "name": "Strawberry",
+                "price": 600,
+                "weight": 1000,
+                "composition": "strawberry"
+            },
+            {
+                "name": "Dumplings",
+                "price": 150,
+                "weight": 500,
+                "composition": "minced pork, flour, water, salt"
+            },
+            {
+                "name": "Sunflower oil",
+                "price": 302.66,
+                "weight": 750,
+                "composition": "sunflower oil refined deodorized, food extract"
+            }
+        ],
+        "stop_list": [],
+        "area": 3
+    },
+    {
+        "name": "McDonald's",
+        "type": 1,
+        "menu": [
+            {
+                "name": "Big Mac",
+                "price": 173,
+                "weight": 228,
+                "composition": "bun, beef patty, sauce, cheese, onions"
+            },
+            {
+                "name": "Vanilla Shake",
+                "price": 125,
+                "weight": 500,
+                "composition": "ice cream, syrup, whipped light cream"
+            },
+            {
+                "name": "Coca-Cola",
+                "price": 114,
+                "weight": 500,
+                "composition": "coca-cola, ice"
+            },
+            {
+                "name": "Chicken McNuggets",
+                "price": 83,
+                "weight": 90,
+                "composition": "chicken, water, vegetable oil, salt"
+            },
+            {
+                "name": "Cheeseburger",
+                "price": 72,
+                "weight": 117,
+                "composition": "bun, beef patty, ketchup, cheese, onions"
+            }
+        ],
+        "stop_list": [],
+        "area": 0
+    },
+    {
+        "name": "Shawarma at Matthew's",
+        "type": 1,
+        "menu": [
+            {
+                "name": "Shawarma with chicken",
+                "price": 200,
+                "weight": 500,
+                "composition": "chicken, tomato, onion, cabbage, sauce"
+            },
+            {
+                "name": "Shawarma with beef",
+                "price": 240,
+                "weight": 500,
+                "composition": "beef, tomato, onion, cabbage, sauce"
+            },
+            {
+                "name": "Shawarma with pork",
+                "price": 220,
+                "weight": 500,
+                "composition": "pork, tomato, onion, cabbage, sauce"
+            },
+            {
+                "name": "Vegetable shawarma",
+                "price": 175,
+                "weight": 350,
+                "composition": "tomato, onion, cabbage, sauce, carrot"
+            },
+            {
+                "name": "Coca-Cola",
+                "price": 114,
+                "weight": 500,
+                "composition": "coca-cola, ice"
+            },
+            {
+                "name": "Pork skewers",
+                "price": 450,
+                "weight": 500,
+                "composition": "pork, onion"
+            }
+        ],
+        "stop_list": [],
+        "area": 1
+    },
+    {
+        "name": "Khinkali house",
+        "type": 1,
+        "menu": [
+            {
+                "name": "Khinkali",
+                "price": 95,
+                "weight": 110,
+                "composition": "dough, minced pork and beef, onion, cilantro"
+            },
+            {
+                "name": "Chashushuli",
+                "price": 590,
+                "weight": 350,
+                "composition": "veal, tomatoes, onion, herbs, garlic, spices"
+            },
+            {
+                "name": "Chakhokhbili",
+                "price": 470,
+                "weight": 350,
+                "composition": "chicken, tomatoes, onion, cilantro, garlic"
+            },
+            {
+                "name": "Khachapuri",
+                "price": 530,
+                "weight": 400,
+                "composition": "dough, suluguni cheese, spinach"
+            },
+            {
+                "name": "Baklava",
+                "price": 310,
+                "weight": 200,
+                "composition": "dough, honey, walnuts"
+            },
+            {
+                "name": "Morse",
+                "price": 150,
+                "weight": 330,
+                "composition": "cranberry, currant"
+            }
+        ],
+        "stop_list": [],
+        "area": 2
+    },
+    {
+        "name": "Mnogo ribi",
+        "type": 1,
+        "menu": [
+            {
+                "name": "Poke",
+                "price": 300,
+                "weight": 400,
+                "composition": "rice, chicken, tomatoes, sauce, sesame"
+            },
+            {
+                "name": "Roll Philadelphia",
+                "price": 390,
+                "weight": 230,
+                "composition": "nori, rice, salmon, cream cheese"
+            },
+            {
+                "name": "Roll Canada",
+                "price": 470,
+                "weight": 250,
+                "composition": "nori, rice, eel, salmon, cream cheese"
+            },
+            {
+                "name": "Tom yum",
+                "price": 350,
+                "weight": 350,
+                "composition": "shrimps, mushrooms, cherry tomatoes, lime"
+            },
+            {
+                "name": "Morse",
+                "price": 100,
+                "weight": 500,
+                "composition": "strawberry, lime, basil"
+            },
+            {
+                "name": "Cheesecake",
+                "price": 170,
+                "weight": 150,
+                "composition": "shortbread cookies, cream cheese, strawberries"
+            }
+        ],
+        "stop_list": [],
+        "area": 3
     }
 ]
