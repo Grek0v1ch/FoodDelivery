@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Pyaterochka",
+        "type": 0,
+        "menu": [
+            {
+                "name": "Milk",
+                "price": 60,
+                "weight": 1000,
+                "composition": "milk"
+            }
+        ],
+        "stop_list": []
+    }
+]
