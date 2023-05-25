@@ -11,5 +11,18 @@
             }
         ],
         "stop_list": []
+    },
+    {
+        "name": "Magnit",
+        "type": 0,
+        "menu": [
+            {
+                "name": "Bread",
+                "price": 40,
+                "weight": 500,
+                "composition": "water, flour, yeast"
+            }
+        ],
+        "stop_list": []
     }
 ]
