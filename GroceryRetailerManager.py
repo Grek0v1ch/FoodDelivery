@@ -2,6 +2,7 @@ import json
 import os
 
 from GroceryRetailer import GroceryRetailer
+from Order import Order
 from OrderBuilder import OrderBuilder
 from Product import Product
 
@@ -31,7 +32,7 @@ class GroceryRetailerManager:
                 )
             )
 
-    def make_order(self):
+    def make_order(self) -> Order:
         builder = OrderBuilder()
         print('Выберите магазин:',
               self.__get_retailers_name_list(), sep='\n')
@@ -51,6 +52,7 @@ class GroceryRetailerManager:
         builder.add_price(
             self.__retailers[number_retailer - 1].menu[number_product - 1].price
         )
+        return builder.order
 
     def __get_retailers_name_list(self) -> str:
         result = []
