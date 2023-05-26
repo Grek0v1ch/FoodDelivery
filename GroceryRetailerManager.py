@@ -1,10 +1,10 @@
 import json
-import os
 
 from GroceryRetailer import GroceryRetailer
 from Order import Order
 from OrderBuilder import OrderBuilder
 from Product import Product
+from System import System
 
 
 class GroceryRetailerManager:
@@ -38,7 +38,7 @@ class GroceryRetailerManager:
               self.__get_retailers_name_list(), sep='\n')
         # TODO: Нужно написать метод ввода целого числа в диапазоне [a, b]
         number_retailer = int(input('Введите номер магазина: '))
-        os.system('clear')
+        System.clear_terminal()
         builder.add_grocery_retailer(self.__retailers[number_retailer - 1].id)
         print('Меню магазина: ',
               self.__get_retailers_menu(number_retailer - 1), sep='\n')
