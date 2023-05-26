@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 
 from GroceryRetailer import GroceryRetailer
 from Order import Order
@@ -33,34 +34,53 @@ class GroceryRetailerManager:
             )
 
     def make_order(self) -> Order:
+        self.__update_retailers()
         builder = OrderBuilder()
-        print('Выберите магазин:',
-              self.__get_retailers_name_list(), sep='\n')
-        # TODO: Нужно написать метод ввода целого числа в диапазоне [a, b]
-        print('Выберите номер')
-        number_retailer = System.validate_integer_in_range(
-            1,
-            len(self.__retailers)
-        )
-        System.clear_terminal()
-        builder.add_grocery_retailer(self.__retailers[number_retailer - 1].id)
-        print('Меню магазина: ',
-              self.__get_retailers_menu(number_retailer - 1), sep='\n')
-        print('Выберите номер')
-        number_product = System.validate_integer_in_range(
-            1,
-            len(self.__retailers[number_retailer - 1].menu)
-        )
-        builder.add_product(
-            self.__retailers[number_retailer - 1].menu[number_product - 1]
-        )
-        builder.add_area(self.__retailers[number_retailer - 1].area)
-        # TODO: Сделать время готовки
-        builder.add_time_cooking(10)
-        builder.add_price(
-            self.__retailers[number_retailer - 1].menu[number_product - 1].price
-        )
-        return builder.order
+        while True:
+            retailer_idx = self.__retailer_selection_menu()
+            System.clear_terminal()
+            if retailer_idx is None:
+                return builder.order
+            builder.add_grocery_retailer(self.__retailers[retailer_idx].id)
+
+            print('Меню заведения: ',
+                  self.__get_retailers_menu(retailer_idx),
+                  f'{len(self.__retailers[retailer_idx].menu) + 1}. Назад',
+                  sep='\n')
+            print('Выберите номер')
+            chose = System.validate_integer_in_range(
+                1,
+                len(self.__retailers[retailer_idx].menu) + 1
+            )
+            System.clear_terminal()
+            if chose < len(self.__retailers[retailer_idx].menu) + 1:
+                product_idx = chose - 1
+                builder.add_product(
+                    self.__retailers[retailer_idx].menu[product_idx]
+                )
+                builder.add_area(self.__retailers[retailer_idx].area)
+                # TODO: Сделать время готовки
+                builder.add_time_cooking(10)
+                builder.add_price(
+                    self.__retailers[retailer_idx].menu[product_idx].price
+                )
+                print('Заказ принят')
+                return builder.order
+
+    def __retailer_selection_menu(self) -> Optional[int]:
+        retailers_name = self.__get_retailers_name_list()
+        print(f'Выберите что вас интересует',
+              retailers_name,
+              f'0. Назад', sep='\n')
+        chose = System.validate_integer_in_range(0, len(self.__retailers))
+        if chose != 0:
+            return chose - 1
+        else:
+            return None
+
+    def __update_retailers(self):
+        for retailer in self.__retailers:
+            retailer.updating_menu()
 
     def __get_retailers_name_list(self) -> str:
         result = []
