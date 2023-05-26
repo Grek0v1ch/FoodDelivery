@@ -22,7 +22,9 @@ class OrderBuilder:
         self.__order.time_cooking = time_cooking
 
     def add_price(self, price: float):
-        self.__order.price = price
+        if self.__order.price is None:
+            self.__order.price = 0
+        self.__order.price += price
 
     @property
     def order(self) -> Order:
