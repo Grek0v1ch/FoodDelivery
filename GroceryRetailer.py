@@ -1,6 +1,7 @@
 from CreatorID import CreatorID
 from GroceryRetailerType import GroceryRetailerType
 from Product import Product
+from random import randint
 
 
 class GroceryRetailer:
@@ -21,7 +22,8 @@ class GroceryRetailer:
 
     def __str__(self):
         return f'Имя: {self.__name}, Тип: {self.__grocery_retailer_type}, ' \
-               f'Меню: {[str(item) for item in self.__menu]}, Стоп лист: {self.__stop_list}'
+               f'Меню: {[str(item) for item in self.__menu]}, ' \
+               f'Стоп лист: {self.__stop_list}'
 
     @property
     def name(self) -> str:
@@ -42,3 +44,24 @@ class GroceryRetailer:
     @property
     def area(self) -> int:
         return self.__area
+
+    def updating_menu(self):
+        temp = randint(0, 1)
+        selected_product_stop_list = None
+        # убираем из стоп листа
+        if temp == 1:
+            if len(self.__stop_list) != 0:
+                selected_product_stop_list = self.__stop_list[
+                    randint(0, len(self.__stop_list) - 1)]
+                self.__stop_list.remove(selected_product_stop_list)
+        temp = randint(0, 1)
+        # убираем из меню
+        if temp == 1:
+            if len(self.__menu) != 0:
+                selected_product_menu = self.__menu[
+                    randint(0, len(self.__menu) - 1)]
+                self.__stop_list.append(selected_product_menu)
+                self.__menu.remove(selected_product_menu)
+                if selected_product_stop_list is not None:
+                    self.__menu.append(selected_product_stop_list)
+        return self.__menu
