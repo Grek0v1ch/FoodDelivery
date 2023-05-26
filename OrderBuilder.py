@@ -14,7 +14,9 @@ class OrderBuilder:
         self.__order.area = area
 
     def add_product(self, product: Product):
-        self.__order.current_product = product
+        if self.__order.products is None:
+            self.__order.products = []
+        self.__order.products.append(product)
 
     def add_time_cooking(self, time_cooking: int):
         self.__order.time_cooking = time_cooking
