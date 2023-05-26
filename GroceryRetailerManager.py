@@ -37,12 +37,20 @@ class GroceryRetailerManager:
         print('Выберите магазин:',
               self.__get_retailers_name_list(), sep='\n')
         # TODO: Нужно написать метод ввода целого числа в диапазоне [a, b]
-        number_retailer = int(input('Введите номер магазина: '))
+        print('Выберите номер')
+        number_retailer = System.validate_integer_in_range(
+            1,
+            len(self.__retailers)
+        )
         System.clear_terminal()
         builder.add_grocery_retailer(self.__retailers[number_retailer - 1].id)
         print('Меню магазина: ',
               self.__get_retailers_menu(number_retailer - 1), sep='\n')
-        number_product = int(input('Введите номер продукта: '))
+        print('Выберите номер')
+        number_product = System.validate_integer_in_range(
+            1,
+            len(self.__retailers[number_retailer - 1].menu)
+        )
         builder.add_product(
             self.__retailers[number_retailer - 1].menu[number_product - 1]
         )
