@@ -41,7 +41,7 @@ class GroceryRetailerManager:
             System.clear_terminal()
             if retailer_idx is None:
                 return builder.order
-            builder.add_grocery_retailer(self.__retailers[retailer_idx].id)
+            builder.add_grocery_retailer(self.__retailers[retailer_idx])
 
             print('Меню заведения: ',
                   self.__get_retailers_menu(retailer_idx),
@@ -57,12 +57,6 @@ class GroceryRetailerManager:
                 product_idx = chose - 1
                 builder.add_product(
                     self.__retailers[retailer_idx].menu[product_idx]
-                )
-                builder.add_area(self.__retailers[retailer_idx].area)
-                # TODO: Сделать время готовки
-                builder.add_time_cooking(10)
-                builder.add_price(
-                    self.__retailers[retailer_idx].menu[product_idx].price
                 )
                 print('Заказ принят')
                 return builder.order
