@@ -1,9 +1,10 @@
 from CreatorID import CreatorID
 from Order import Order
+from Product import Product
 
 
 class OrderBuilder:
-    def __int__(self):
+    def __init__(self):
         self.__order: Order = Order(CreatorID.generate_order_id())
 
     def add_grocery_retailer(self, grocery_retailer_id: tuple[str]):
@@ -12,7 +13,7 @@ class OrderBuilder:
     def add_area(self, area: int):
         self.__order.area = area
 
-    def add_product(self, product: bool):
+    def add_product(self, product: Product):
         self.__order.current_product = product
 
     def add_time_cooking(self, time_cooking: int):
@@ -20,3 +21,7 @@ class OrderBuilder:
 
     def add_price(self, price: float):
         self.__order.price = price
+
+    @property
+    def order(self) -> Order:
+        return self.__order
