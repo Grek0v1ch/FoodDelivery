@@ -21,7 +21,7 @@ class GroceryRetailer:
 
     def __str__(self):
         return f'Имя: {self.__name}, Тип: {self.__grocery_retailer_type}, ' \
-               f'Меню: {self.__menu}, Стоп лист: {self.__stop_list}'
+               f'Меню: {[str(item) for item in self.__menu]}, Стоп лист: {self.__stop_list}'
 
     @property
     def name(self) -> str:
