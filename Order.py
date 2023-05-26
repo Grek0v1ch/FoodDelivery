@@ -8,7 +8,7 @@ class Order:
     __id: tuple[str]
     grocery_retailer_id: Optional[tuple[str]] = None
     area: Optional[int] = None
-    current_product: Optional[Product] = None  # Product
+    current_product: Optional[Product] = None
     time_cooking: Optional[int] = None
     price: Optional[float] = None
 
