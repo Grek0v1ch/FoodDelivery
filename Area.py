@@ -1,17 +1,37 @@
-from typing import Optional, Union
+from typing import Union, Dict
 
 from DelivaryMan import DelivaryMan
 
 
+def define_initial_transport_idx(distance: float) -> int:
+    """ Transport's idx:
+    AFOOT - 0
+    BICYCLE - 1
+    SCOOTER - 2
+    CAR - 3
+    """
+    if distance < 850:
+        idx = 0
+    elif distance < 1700:
+        idx = 1
+    elif distance < 3000:
+        idx = 2
+    else:
+        idx = 3
+    return idx
+
+
 class Area:
     def __init__(self):
-        self.delivers = {}
-        sample = {'active': Optional[list[DelivaryMan]],
-                  'inactive': Optional[list[DelivaryMan]]}
-        self.delivers['AFOOT'] = sample
-        self.delivers['CAR'] = sample
-        self.delivers['BICYCLE'] = sample
-        self.delivers['SCOOTER'] = sample
+        self.delivers: Dict[str, Dict[str, list[DelivaryMan]]] = {'AFOOT': {'active': [],
+                                                                            'inactive': []},
+                                                                  'BICYCLE': {'active': [],
+                                                                              'inactive': []},
+                                                                  'SCOOTER': {'active': [],
+                                                                              'inactive': []},
+                                                                  'CAR': {'active': [],
+                                                                          'inactive': []}
+                                                                  }
 
     def tick(self):
         for key in self.delivers.keys():
@@ -24,27 +44,12 @@ class Area:
         self.delivers[delivaryman.transport]['inactive'].append(delivaryman)
 
     def find_delivaryman(self, road_length: float) -> Union[DelivaryMan, bool]:
-        idx: int = 0
+        """find deliveryman based on path length"""
+        idx: int = define_initial_transport_idx(road_length)
 
-        if road_length < 850:
-            idx = 0
-        elif road_length < 1700:
-            idx = 1
-        elif road_length < 3000:
-            idx = 2
-        else:
-            idx = 3
-
-        for key in self.delivers.keys():
-            if idx != 0:
-                idx -= 1
-                continue
+        for key in list(self.delivers.keys())[idx:]:
             if len(self.delivers[key]['inactive']):
                 deliveryman = self.delivers[key]['inactive'].pop()
                 self.delivers[key]['active'].append(deliveryman)
                 return deliveryman
         return False
-
-
-
-

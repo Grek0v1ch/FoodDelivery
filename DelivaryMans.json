@@ -1,34 +1,30 @@
  [
-   [
     {
       "area": 0,
       "current_order": 0,
-      "transport": 1,
+      "transport": "AFOOT",
       "order_time": 0,
       "time_start": 0
     },
     {
       "area": 0,
       "current_order": 0,
-      "transport": 2,
+      "transport": "CAR",
       "order_time": 0,
       "time_start": 0
-    }
-   ],
-   [
+    },
      {
       "area": 1,
       "current_order": 0,
-      "transport": 1,
+      "transport": "BICYCLE",
       "order_time": 0,
       "time_start": 0
     },
     {
       "area": 1,
       "current_order": 0,
-      "transport": 2,
+      "transport": "AFOOT",
       "order_time": 0,
       "time_start": 0
     }
-   ]
   ]
