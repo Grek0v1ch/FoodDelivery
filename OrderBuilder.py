@@ -1,4 +1,5 @@
 from CreatorID import CreatorID
+from GroceryRetailer import GroceryRetailer
 from Order import Order
 from Product import Product
 
@@ -7,20 +8,20 @@ class OrderBuilder:
     def __init__(self):
         self.__order: Order = Order(CreatorID.generate_order_id())
 
-    def add_grocery_retailer(self, grocery_retailer_id: tuple[str]):
-        self.__order.grocery_retailer_id = grocery_retailer_id
-
-    def add_area(self, area: int):
-        self.__order.area = area
+    def add_grocery_retailer(self, grocery_retailer: GroceryRetailer):
+        self.__order.grocery_retailer_id = grocery_retailer.id
+        self.__order.area = grocery_retailer.area
+        self.__order.price = 0
+        self.__order.time_cooking = 0
+        self.__order.products = []
 
     def add_product(self, product: Product):
-        self.__order.current_product = product
-
-    def add_time_cooking(self, time_cooking: int):
-        self.__order.time_cooking = time_cooking
-
-    def add_price(self, price: float):
-        self.__order.price = price
+        if self.__order.grocery_retailer_id is None:
+            return
+        self.__order.products.append(product)
+        self.__order.price += product.price
+        # TODO: нужно добавить время готовки
+        self.__order.time_cooking += 10
 
     @property
     def order(self) -> Order:
