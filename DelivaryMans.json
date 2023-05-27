@@ -26,5 +26,12 @@
       "transport": "AFOOT",
       "order_time": 0,
       "time_start": 0
+    },
+    {
+      "area": 2,
+      "current_order": 0,
+      "transport": "CAR",
+      "order_time": 0,
+      "time_start": 0
     }
-  ]
+ ]

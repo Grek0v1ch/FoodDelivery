@@ -30,9 +30,11 @@ class DelivaryMan:
     def timer_start(self, road_length: float) -> None:
         self.time_start = time.time()
         self.order_time = translate_hours_to_seconds(road_length / TransportType[self.transport].value)
-        print(self.transport)
+        print(self.transport, self.area)
 
     def tick(self) -> None:
-        # стоит добавить что нужно спрашивать у доставщика пришел ли заказ
-        if time.time() - self.time_start >= self.order_time:
+        # TODO: стоит добавить что нужно спрашивать у доставщика пришел ли заказ
+        if time.time() - self.time_start >= self.order_time and self.time_start != -1:
             self.current_order = False
+            self.time_start = -1
+            print(self.area, self.transport, time.time() - self.time_start)
