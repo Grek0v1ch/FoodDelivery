@@ -2,9 +2,9 @@ import json
 from typing import Optional
 
 from GroceryRetailer.GroceryRetailer import GroceryRetailer
-from Order import Order
-from OrderBuilder import OrderBuilder
-from Product import Product
+from Order.Order import Order
+from Order.OrderBuilder import OrderBuilder
+from Order.Product import Product
 from System import System
 
 

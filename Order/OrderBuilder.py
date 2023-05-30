@@ -1,6 +1,6 @@
 from CreatorID import CreatorID
 from GroceryRetailer import GroceryRetailer
-from Order import Order
+from Order.Order import Order
 from Product import Product
 
 
