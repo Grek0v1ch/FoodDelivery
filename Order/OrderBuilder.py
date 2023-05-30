@@ -1,7 +1,7 @@
 from CreatorID import CreatorID
-from GroceryRetailer import GroceryRetailer
+from GroceryRetailer.GroceryRetailer import GroceryRetailer
 from Order.Order import Order
-from Product import Product
+from Order.Product import Product
 
 
 class OrderBuilder:

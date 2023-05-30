@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
-from Product import Product
+from Order.Product import Product
 
 
 @dataclass
