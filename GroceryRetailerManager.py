@@ -36,30 +36,30 @@ class GroceryRetailerManager:
     def make_order(self) -> Order:
         self.__update_retailers()
         builder = OrderBuilder()
-        while True:
-            retailer_idx = self.__retailer_selection_menu()
-            System.clear_terminal()
-            if retailer_idx is None:
-                return builder.order
+        retailer_idx = self.__retailer_selection_menu()
+        System.clear_terminal()
+        while retailer_idx is not None:
             builder.add_grocery_retailer(self.__retailers[retailer_idx])
-
-            print('Меню заведения: ',
-                  self.__get_retailers_menu(retailer_idx),
-                  f'{len(self.__retailers[retailer_idx].menu) + 1}. Назад',
-                  sep='\n')
-            print('Выберите номер')
-            chose = System.validate_integer_in_range(
-                1,
-                len(self.__retailers[retailer_idx].menu) + 1
-            )
+            product_idx = self.__product_selection_menu(retailer_idx)
             System.clear_terminal()
-            if chose < len(self.__retailers[retailer_idx].menu) + 1:
-                product_idx = chose - 1
+            while product_idx is not None:
                 builder.add_product(
                     self.__retailers[retailer_idx].menu[product_idx]
                 )
-                print('Заказ принят')
-                return builder.order
+                print('Хотите выбрать что то еще?',
+                      '1. Да',
+                      '2. Нет', sep='\n')
+                chose = System.validate_integer_in_range(1, 2)
+                System.clear_terminal()
+                if chose == 1:
+                    product_idx = self.__product_selection_menu(retailer_idx)
+                    System.clear_terminal()
+                else:
+                    product_idx = None
+            retailer_idx = self.__retailer_selection_menu()
+            System.clear_terminal()
+        print('Заказ принят')
+        return builder.order
 
     def __retailer_selection_menu(self) -> Optional[int]:
         retailers_name = self.__get_retailers_name_list()
@@ -68,6 +68,22 @@ class GroceryRetailerManager:
               f'0. Назад', sep='\n')
         chose = System.validate_integer_in_range(0, len(self.__retailers))
         if chose != 0:
+            return chose - 1
+        else:
+            return None
+
+    def __product_selection_menu(self, retailer_idx: int):
+        print('Меню заведения: ',
+              self.__get_retailers_menu(retailer_idx),
+              f'{len(self.__retailers[retailer_idx].menu) + 1}. Назад',
+              sep='\n')
+        print('Выберите номер')
+        chose = System.validate_integer_in_range(
+            1,
+            len(self.__retailers[retailer_idx].menu) + 1
+        )
+        System.clear_terminal()
+        if chose < len(self.__retailers[retailer_idx].menu) + 1:
             return chose - 1
         else:
             return None
