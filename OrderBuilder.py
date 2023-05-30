@@ -20,8 +20,7 @@ class OrderBuilder:
             return
         self.__order.products.append(product)
         self.__order.price += product.price
-        # TODO: нужно добавить время готовки
-        self.__order.time_cooking += 10
+        self.__order.time_cooking += product.time_cooking
 
     @property
     def order(self) -> Order:
