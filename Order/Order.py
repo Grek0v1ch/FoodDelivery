@@ -21,3 +21,7 @@ class Order:
         return self.grocery_retailer_id is None or self.area is None or \
                self.products is None or self.time_cooking is None or\
                self.price is None
+
+    @property
+    def is_valid_order(self) -> bool:
+        return not self.is_any_none and len(self.products) != 0

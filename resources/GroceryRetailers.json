@@ -7,31 +7,36 @@
                 "name": "Milk",
                 "price": 60,
                 "weight": 1000,
-                "composition": "milk"
+                "composition": "milk",
+                "time_cooking": 1
             },
             {
                 "name": "Potato",
                 "price": 27.99,
                 "weight": 1000,
-                "composition": "potato"
+                "composition": "potato",
+                "time_cooking": 1
             },
             {
                 "name": "Orange juice",
                 "price": 120,
                 "weight": 900,
-                "composition": "orange, water, sugar"
+                "composition": "orange, water, sugar",
+                "time_cooking": 1
             },
             {
                 "name": "Toothpaste",
                 "price": 292.6,
                 "weight": 75,
-                "composition": "water, sorbitol, silica, glycerin"
+                "composition": "water, sorbitol, silica, glycerin",
+                "time_cooking": 1
             },
             {
                 "name": "Sunflower oil",
                 "price": 129,
                 "weight": 750,
-                "composition": "sunflower oil refined deodorized, food extract"
+                "composition": "sunflower oil refined deodorized, food extract",
+                "time_cooking": 1
             }
         ],
         "stop_list": [],
@@ -45,37 +50,43 @@
                 "name": "Bread",
                 "price": 40,
                 "weight": 500,
-                "composition": "water, flour, yeast"
+                "composition": "water, flour, yeast",
+                "time_cooking": 1
             },
             {
                 "name": "Potato",
                 "price": 41.99,
                 "weight": 1000,
-                "composition": "potato"
+                "composition": "potato",
+                "time_cooking": 1
             },
             {
                 "name": "Apple juice",
                 "price": 100,
                 "weight": 750,
-                "composition": "apple, water, sugar"
+                "composition": "apple, water, sugar",
+                "time_cooking": 1
             },
             {
                 "name": "Toilet paper",
                 "price": 199.99,
                 "weight": 796,
-                "composition": "cellulose"
+                "composition": "cellulose",
+                "time_cooking": 1
             },
             {
                 "name": "Mayonnaise",
                 "price": 131,
                 "weight": 400,
-                "composition": "sunflower oil, egg, milk, sugar, salt"
+                "composition": "sunflower oil, egg, milk, sugar, salt",
+                "time_cooking": 1
             },
             {
                 "name": "Potato chips",
                 "price": 74.45,
                 "weight": 80,
-                "composition": "potatoes, vegetable oil, glucose, salt"
+                "composition": "potatoes, vegetable oil, glucose, salt",
+                "time_cooking": 1
             }
         ],
         "stop_list": [],
@@ -89,31 +100,36 @@
                 "name": "Milk",
                 "price": 60,
                 "weight": 1000,
-                "composition": "milk"
+                "composition": "milk",
+                "time_cooking": 1
             },
             {
                 "name": "Eggs",
                 "price": 90,
                 "weight": 650,
-                "composition": "eggs"
+                "composition": "eggs",
+                "time_cooking": 1
             },
             {
                 "name": "Chocolate bar",
                 "price": 126.99,
                 "weight": 90,
-                "composition": "sugar, milk, cocoa butter, nuts"
+                "composition": "sugar, milk, cocoa butter, nuts",
+                "time_cooking": 1
             },
             {
                 "name": "Toothpaste",
                 "price": 301,
                 "weight": 75,
-                "composition": "water, sorbitol, silica, glycerin"
+                "composition": "water, sorbitol, silica, glycerin",
+                "time_cooking": 1
             },
             {
                 "name": "Cheese",
                 "price": 166.55,
                 "weight": 200,
-                "composition": "milk, salt, sourdough, milk-clotting enzyme"
+                "composition": "milk, salt, sourdough, milk-clotting enzyme",
+                "time_cooking": 1
             }
         ],
         "stop_list": [],
@@ -127,31 +143,36 @@
                 "name": "Cottage cheese",
                 "price": 117.99,
                 "weight": 200,
-                "composition": "milk, sourdough"
+                "composition": "milk, sourdough",
+                "time_cooking": 1
             },
             {
                 "name": "Radish",
                 "price": 79.99,
                 "weight": 500,
-                "composition": "radish"
+                "composition": "radish",
+                "time_cooking": 1
             },
             {
                 "name": "Strawberry",
                 "price": 600,
                 "weight": 1000,
-                "composition": "strawberry"
+                "composition": "strawberry",
+                "time_cooking": 1
             },
             {
                 "name": "Dumplings",
                 "price": 150,
                 "weight": 500,
-                "composition": "minced pork, flour, water, salt"
+                "composition": "minced pork, flour, water, salt",
+                "time_cooking": 1
             },
             {
                 "name": "Sunflower oil",
                 "price": 302.66,
                 "weight": 750,
-                "composition": "sunflower oil refined deodorized, food extract"
+                "composition": "sunflower oil refined deodorized, food extract",
+                "time_cooking": 1
             }
         ],
         "stop_list": [],
@@ -165,31 +186,36 @@
                 "name": "Big Mac",
                 "price": 173,
                 "weight": 228,
-                "composition": "bun, beef patty, sauce, cheese, onions"
+                "composition": "bun, beef patty, sauce, cheese, onions",
+                "time_cooking": 180
             },
             {
                 "name": "Vanilla Shake",
                 "price": 125,
                 "weight": 500,
-                "composition": "ice cream, syrup, whipped light cream"
+                "composition": "ice cream, syrup, whipped light cream",
+                "time_cooking": 30
             },
             {
                 "name": "Coca-Cola",
                 "price": 114,
                 "weight": 500,
-                "composition": "coca-cola, ice"
+                "composition": "coca-cola, ice",
+                "time_cooking": 30
             },
             {
                 "name": "Chicken McNuggets",
                 "price": 83,
                 "weight": 90,
-                "composition": "chicken, water, vegetable oil, salt"
+                "composition": "chicken, water, vegetable oil, salt",
+                "time_cooking": 120
             },
             {
                 "name": "Cheeseburger",
                 "price": 72,
                 "weight": 117,
-                "composition": "bun, beef patty, ketchup, cheese, onions"
+                "composition": "bun, beef patty, ketchup, cheese, onions",
+                "time_cooking": 120
             }
         ],
         "stop_list": [],
@@ -203,37 +229,43 @@
                 "name": "Shawarma with chicken",
                 "price": 200,
                 "weight": 500,
-                "composition": "chicken, tomato, onion, cabbage, sauce"
+                "composition": "chicken, tomato, onion, cabbage, sauce",
+                "time_cooking": 1200
             },
             {
                 "name": "Shawarma with beef",
                 "price": 240,
                 "weight": 500,
-                "composition": "beef, tomato, onion, cabbage, sauce"
+                "composition": "beef, tomato, onion, cabbage, sauce",
+                "time_cooking": 1500
             },
             {
                 "name": "Shawarma with pork",
                 "price": 220,
                 "weight": 500,
-                "composition": "pork, tomato, onion, cabbage, sauce"
+                "composition": "pork, tomato, onion, cabbage, sauce",
+                "time_cooking": 1500
             },
             {
                 "name": "Vegetable shawarma",
                 "price": 175,
                 "weight": 350,
-                "composition": "tomato, onion, cabbage, sauce, carrot"
+                "composition": "tomato, onion, cabbage, sauce, carrot",
+                "time_cooking": 600
             },
             {
                 "name": "Coca-Cola",
                 "price": 114,
                 "weight": 500,
-                "composition": "coca-cola, ice"
+                "composition": "coca-cola, ice",
+                "time_cooking": 30
             },
             {
                 "name": "Pork skewers",
                 "price": 450,
                 "weight": 500,
-                "composition": "pork, onion"
+                "composition": "pork, onion",
+                "time_cooking": 1200
             }
         ],
         "stop_list": [],
@@ -247,37 +279,43 @@
                 "name": "Khinkali",
                 "price": 95,
                 "weight": 110,
-                "composition": "dough, minced pork and beef, onion, cilantro"
+                "composition": "dough, minced pork and beef, onion, cilantro",
+                "time_cooking": 420
             },
             {
                 "name": "Chashushuli",
                 "price": 590,
                 "weight": 350,
-                "composition": "veal, tomatoes, onion, herbs, garlic, spices"
+                "composition": "veal, tomatoes, onion, herbs, garlic, spices",
+                "time_cooking": 1500
             },
             {
                 "name": "Chakhokhbili",
                 "price": 470,
                 "weight": 350,
-                "composition": "chicken, tomatoes, onion, cilantro, garlic"
+                "composition": "chicken, tomatoes, onion, cilantro, garlic",
+                "time_cooking": 2100
             },
             {
                 "name": "Khachapuri",
                 "price": 530,
                 "weight": 400,
-                "composition": "dough, suluguni cheese, spinach"
+                "composition": "dough, suluguni cheese, spinach",
+                "time_cooking": 1200
             },
             {
                 "name": "Baklava",
                 "price": 310,
                 "weight": 200,
-                "composition": "dough, honey, walnuts"
+                "composition": "dough, honey, walnuts",
+                "time_cooking": 960
             },
             {
                 "name": "Morse",
                 "price": 150,
                 "weight": 330,
-                "composition": "cranberry, currant"
+                "composition": "cranberry, currant",
+                "time_cooking": 30
             }
         ],
         "stop_list": [],
@@ -291,37 +329,43 @@
                 "name": "Poke",
                 "price": 300,
                 "weight": 400,
-                "composition": "rice, chicken, tomatoes, sauce, sesame"
+                "composition": "rice, chicken, tomatoes, sauce, sesame",
+                "time_cooking": 900
             },
             {
                 "name": "Roll Philadelphia",
                 "price": 390,
                 "weight": 230,
-                "composition": "nori, rice, salmon, cream cheese"
+                "composition": "nori, rice, salmon, cream cheese",
+                "time_cooking": 1200
             },
             {
                 "name": "Roll Canada",
                 "price": 470,
                 "weight": 250,
-                "composition": "nori, rice, eel, salmon, cream cheese"
+                "composition": "nori, rice, eel, salmon, cream cheese",
+                "time_cooking": 720
             },
             {
                 "name": "Tom yum",
                 "price": 350,
                 "weight": 350,
-                "composition": "shrimps, mushrooms, cherry tomatoes, lime"
+                "composition": "shrimps, mushrooms, cherry tomatoes, lime",
+                "time_cooking": 600
             },
             {
                 "name": "Morse",
                 "price": 100,
                 "weight": 500,
-                "composition": "strawberry, lime, basil"
+                "composition": "strawberry, lime, basil",
+                "time_cooking": 30
             },
             {
                 "name": "Cheesecake",
                 "price": 170,
                 "weight": 150,
-                "composition": "shortbread cookies, cream cheese, strawberries"
+                "composition": "shortbread cookies, cream cheese, strawberries",
+                "time_cooking": 180
             }
         ],
         "stop_list": [],
