@@ -1,4 +1,4 @@
-from GroceryRetailerManager import GroceryRetailerManager
+from GroceryRetailer.GroceryRetailerManager import GroceryRetailerManager
 
 
 def main():

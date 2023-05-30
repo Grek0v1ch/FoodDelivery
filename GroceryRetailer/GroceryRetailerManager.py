@@ -1,7 +1,7 @@
 import json
 from typing import Optional
 
-from GroceryRetailer import GroceryRetailer
+from GroceryRetailer.GroceryRetailer import GroceryRetailer
 from Order import Order
 from OrderBuilder import OrderBuilder
 from Product import Product
