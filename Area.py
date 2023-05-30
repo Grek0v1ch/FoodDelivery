@@ -1,6 +1,5 @@
 from typing import Union, Dict
-
-from DelivaryMan import DelivaryMan
+from DeliveryMan import DeliveryMan
 
 
 def define_initial_transport_idx(distance: float) -> int:
@@ -23,33 +22,34 @@ def define_initial_transport_idx(distance: float) -> int:
 
 class Area:
     def __init__(self):
-        self.delivers: Dict[str, Dict[str, list[DelivaryMan]]] = {'AFOOT': {'active': [],
-                                                                            'inactive': []},
-                                                                  'BICYCLE': {'active': [],
-                                                                              'inactive': []},
-                                                                  'SCOOTER': {'active': [],
-                                                                              'inactive': []},
-                                                                  'CAR': {'active': [],
-                                                                          'inactive': []}
-                                                                  }
+        self.area_delivery: Dict[str, Dict[str, list[DeliveryMan]]] = \
+            {'AFOOT': {'active': [],
+                       'inactive': []},
+             'BICYCLE': {'active': [],
+                         'inactive': []},
+             'SCOOTER': {'active': [],
+                         'inactive': []},
+             'CAR': {'active': [],
+                     'inactive': []}
+             }
 
     def tick(self):
-        for key in self.delivers.keys():
-            for deliveryman in self.delivers[key]['active']:
+        for key in self.area_delivery.keys():
+            for deliveryman in self.area_delivery[key]['active']:
                 deliveryman.tick()
                 if deliveryman.is_free:
-                    self.delivers[key]['inactive'].append(deliveryman)
+                    self.area_delivery[key]['inactive'].append(deliveryman)
 
-    def add_delivaryman(self, delivaryman: DelivaryMan):
-        self.delivers[delivaryman.transport]['inactive'].append(delivaryman)
+    def add_deliveryman(self, deliveryman: DeliveryMan):
+        self.area_delivery[deliveryman.transport]['inactive'].append(deliveryman)
 
-    def find_delivaryman(self, road_length: float) -> Union[DelivaryMan, bool]:
+    def find_delivaryman(self, road_length: float) -> Union[DeliveryMan, None]:
         """find deliveryman based on path length"""
         idx: int = define_initial_transport_idx(road_length)
 
-        for key in list(self.delivers.keys())[idx:]:
-            if len(self.delivers[key]['inactive']):
-                deliveryman = self.delivers[key]['inactive'].pop()
-                self.delivers[key]['active'].append(deliveryman)
+        for key in list(self.area_delivery.keys())[idx:]:
+            if len(self.area_delivery[key]['inactive']):
+                deliveryman = self.area_delivery[key]['inactive'].pop()
+                self.area_delivery[key]['active'].append(deliveryman)
                 return deliveryman
-        return False
+        return None
