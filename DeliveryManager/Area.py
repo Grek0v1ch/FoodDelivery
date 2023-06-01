@@ -1,5 +1,5 @@
 from typing import Union, Dict
-from DeliveryMan import DeliveryMan
+from DeliveryManager.DeliveryMan import DeliveryMan
 
 
 def define_initial_transport_idx(distance: float) -> int:

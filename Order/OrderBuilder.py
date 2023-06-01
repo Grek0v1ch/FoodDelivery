@@ -20,7 +20,7 @@ class OrderBuilder:
             return
         self.__order.products.append(product)
         self.__order.price += product.price
-        self.__order.time_cooking += product.time_cooking
+        self.__order.time_cooking += 1
 
     @property
     def order(self) -> Order:
