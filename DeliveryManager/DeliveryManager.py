@@ -7,6 +7,7 @@ from Order import Order
 
 class DeliveryManager(metaclass=MetaSingleton):
     def __init__(self):
+        # TODO: сделать отдельный класс город для создания районов
         self.__areas: list[Area] = [Area() for _ in range(3)]
         # TODO: обсудить программу заполнения матрицы районов
         self.__matrix_areas_location: list[list[int]] = [[2], [2], [0, 1]]

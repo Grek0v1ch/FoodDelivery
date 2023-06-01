@@ -29,7 +29,8 @@ class DeliveryMan:
 
     def timer_start(self, road_length: float) -> None:
         self.time_start = time.time()
-        self.order_time = translate_hours_to_seconds(road_length / TransportType[self.transport].value)
+        self.order_time = translate_hours_to_seconds(road_length /
+                                                     TransportType[self.transport].value)
 
     def tick(self) -> None:
         # TODO: стоит добавить что нужно спрашивать у доставщика пришел ли заказ
