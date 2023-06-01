@@ -1,5 +1,5 @@
 from CreatorID import CreatorID
-from GroceryRetailerType import GroceryRetailerType
+from GroceryRetailer.GroceryRetailerType import GroceryRetailerType
 from Order.Product import Product
 from random import randint
 
