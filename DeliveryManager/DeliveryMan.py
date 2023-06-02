@@ -4,15 +4,11 @@ import time
 
 
 class TransportType(Enum):
-    """integer numbers - speed of transport types"""
+    """integer numbers - speed of transport types in m/s"""
     CAR = 16.67
     SCOOTER = 12.5
     BICYCLE = 6.94
     AFOOT = 3.67
-
-
-# def translate_hours_to_seconds(hours: float) -> float:
-#     return hours * 3600
 
 
 @dataclass
