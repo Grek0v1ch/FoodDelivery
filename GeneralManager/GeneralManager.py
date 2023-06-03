@@ -38,16 +38,27 @@ class GeneralManager(metaclass=MetaSingleton):
             System.clear_terminal()
             if chose == 1:
                 order = self.__grocery_manager.make_order()
-                length = random.randint(0, 3000)
-                if self.__delivery_manager.accept_order(order, length) is None:
-                    print('Свободных доставщиков в вашем районе пока нет, '
-                          'идет поиск...')
-                    while self.__delivery_manager.accept_order(order, length) is None:
-                        print(self.__delivery_manager.get_order_status(order))
-                        time.sleep(5)
-                        delivery_manager.tick()
-                # Debug
-                print(self.__delivery_manager.get_order_status(order))
+                if order.is_valid_order:
+                    print('Заказ принят. Ищем доставщика...')
+                    length = random.randint(0, 3000)
+                    if self.__delivery_manager.accept_order(
+                            order,
+                            length
+                    ) is None:
+                        print('Свободных доставщиков в вашем районе пока нет, '
+                              'идет поиск...')
+                        while self.__delivery_manager.accept_order(
+                                order,
+                                length
+                        ) is None:
+                            print(self.__delivery_manager.get_order_status(
+                                order
+                            ))
+                            time.sleep(5)
+                            delivery_manager.tick()
+                    print('Доставщик найден! Вам доставит еду Матвей пешком')
+                    _ = input()
+                    System.clear_terminal()
             elif chose == 2:
                 print(self.__delivery_manager.get_order_status(order))
                 _ = input()
