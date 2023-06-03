@@ -16,7 +16,7 @@ def translate_hours_to_seconds(hours: float) -> float:
 
 
 @dataclass
-class DelivaryMan:
+class DeliveryMan:
     area: int
     current_order: bool  # Order
     transport: str
@@ -29,10 +29,10 @@ class DelivaryMan:
 
     def timer_start(self, road_length: float) -> None:
         self.time_start = time.time()
-        self.order_time = translate_hours_to_seconds(road_length / TransportType[self.transport].value)
-        print(self.transport)
+        self.order_time = translate_hours_to_seconds(road_length /
+                                                     TransportType[self.transport].value)
 
     def tick(self) -> None:
-        # стоит добавить что нужно спрашивать у доставщика пришел ли заказ
+        # TODO: стоит добавить что нужно спрашивать у доставщика пришел ли заказ
         if time.time() - self.time_start >= self.order_time:
             self.current_order = False
