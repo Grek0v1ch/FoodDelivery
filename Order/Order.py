@@ -9,6 +9,7 @@ class Order:
     grocery_retailer_id: Optional[tuple[str]] = None
     area: Optional[int] = None
     products: Optional[list[Product]] = None
+    weight: Optional[int] = None
     time_cooking: Optional[int] = None
     price: Optional[float] = None
 
