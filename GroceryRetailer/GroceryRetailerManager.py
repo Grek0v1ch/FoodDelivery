@@ -113,7 +113,8 @@ class GroceryRetailerManager:
                     name=product['name'],
                     price=product['price'],
                     weight=product['weight'],
-                    composition=product['composition']
+                    composition=product['composition'],
+                    time_cooking=product['time_cooking']
                 )
             )
         return result
