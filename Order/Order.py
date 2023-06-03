@@ -10,7 +10,7 @@ class Order:
     area: Optional[int] = None
     products: Optional[list[Product]] = None
     weight: Optional[int] = None
-    time_cooking: Optional[int] = None
+    ime_cooking: Optional[int] = None
     price: Optional[float] = None
 
     @property
