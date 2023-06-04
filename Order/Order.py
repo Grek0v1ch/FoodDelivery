@@ -14,6 +14,13 @@ class Order:
     price: Optional[float] = None
 
     @property
+    def get_products_name(self) -> str:
+        result = []
+        for product in self.products:
+            result.append(product.name)
+        return ', '.join(result)
+
+    @property
     def id(self) -> tuple[str]:
         return self.__id
 
