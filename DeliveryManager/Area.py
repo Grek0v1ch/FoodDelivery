@@ -45,16 +45,19 @@ class Area(object):
 
     def get_orders_status(self) -> \
             Optional[tuple[list[str], list[tuple[str, int]]]]:
+        ready_orders_id: list[str] = []
         ready_orders: list[str] = []
         active_orders: list[tuple[str, int]] = []
         for order_id in self.__deliveryman_status.keys():
             if self.__deliveryman_status[order_id][1].time_left <= 0:
                 ready_orders.append(order_id)
-                self.__deliveryman_status.pop(order_id)
+                ready_orders_id.append(order_id)
             else:
                 active_orders.append(
                     (order_id,
                      int(self.__deliveryman_status[order_id][1].time_left)))
+        for order_id in ready_orders_id:
+            self.__deliveryman_status.pop(order_id)
         return ready_orders, active_orders
 
     def add_deliveryman(self, deliveryman: DeliveryMan):
