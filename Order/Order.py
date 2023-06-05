@@ -9,8 +9,16 @@ class Order:
     grocery_retailer_id: Optional[tuple[str]] = None
     area: Optional[int] = None
     products: Optional[list[Product]] = None
-    time_cooking: Optional[int] = None
+    weight: Optional[int] = None
+    ime_cooking: Optional[int] = None
     price: Optional[float] = None
+
+    @property
+    def get_products_name(self) -> str:
+        result = []
+        for product in self.products:
+            result.append(product.name)
+        return ', '.join(result)
 
     @property
     def id(self) -> tuple[str]:

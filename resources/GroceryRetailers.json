@@ -176,7 +176,7 @@
             }
         ],
         "stop_list": [],
-        "area": 3
+        "area": 0
     },
     {
         "name": "McDonald's",
@@ -369,6 +369,6 @@
             }
         ],
         "stop_list": [],
-        "area": 3
+        "area": 1
     }
 ]

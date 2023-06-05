@@ -12,6 +12,7 @@ class OrderBuilder:
         self.__order.grocery_retailer_id = grocery_retailer.id
         self.__order.area = grocery_retailer.area
         self.__order.price = 0
+        self.__order.weight = 0
         self.__order.time_cooking = 0
         self.__order.products = []
 
@@ -20,7 +21,8 @@ class OrderBuilder:
             return
         self.__order.products.append(product)
         self.__order.price += product.price
-        self.__order.time_cooking += 1
+        self.__order.weight += product.weight
+        self.__order.time_cooking += product.time_cooking
 
     @property
     def order(self) -> Order:
