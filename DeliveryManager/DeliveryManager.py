@@ -1,5 +1,5 @@
 import random
-from typing import Dict, Optional
+from typing import Optional
 from DeliveryManager.DeliveryMan import DeliveryMan
 from DeliveryManager.Area import Area
 from MetaSingleton import MetaSingleton
@@ -16,10 +16,10 @@ class DeliveryManager(metaclass=MetaSingleton):
         self.__matrix_areas_location: list[list[int]] = [[2], [2], [0, 1]]
 
     def get_orders_status(self) -> \
-            Optional[list[list[str], list[tuple[str, int]]]]:
-        result_orders: list[list[str], list[tuple[str, int]]] = []
+            Optional[tuple[list[str], list[tuple[str, int]]]]:
+        result_orders: tuple[list[str], list[tuple[str, int]]] = [], []
         for area in self.__areas:
-            orders: [tuple[list[str], list[tuple[str, int]]]] = \
+            orders: tuple[list[str], list[tuple[str, int]]] = \
                 area.get_orders_status()
             result_orders[0].extend(orders[0])
             result_orders[1].extend(orders[1])
