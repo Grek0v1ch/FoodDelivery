@@ -56,12 +56,12 @@ class GroceryRetailer:
                 self.__stop_list.remove(selected_product_stop_list)
         temp = randint(0, 1)
         # убираем из меню
-        if temp == 1:
+        if temp == 1 and len(self.__stop_list) < len(self.__menu):
             if len(self.__menu) != 0:
                 selected_product_menu = self.__menu[
                     randint(0, len(self.__menu) - 1)]
                 self.__stop_list.append(selected_product_menu)
                 self.__menu.remove(selected_product_menu)
-                if selected_product_stop_list is not None:
-                    self.__menu.append(selected_product_stop_list)
+        if selected_product_stop_list is not None:
+            self.__menu.append(selected_product_stop_list)
         return self.__menu
