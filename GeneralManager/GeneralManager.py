@@ -20,14 +20,13 @@ class GeneralManager(metaclass=MetaSingleton):
         self.__grocery_manager.load_json(file_path)
 
     def __load_delivery_mans(self, file_path: str) -> None:
-        delivery_manager = DeliveryManager()
         with open(file_path, 'r') as f:
             text = json.load(f)
         for i in range(len(text)):
             man = DeliveryMan(text[i]["area"], text[i]["current_order"],
                               text[i]["transport"],
                               text[i]["order_time"], text[i]["time_start"])
-            delivery_manager.add_deliveryman(man)
+            self.__delivery_manager.add_deliveryman(man)
 
     def start(self):
         while True:
