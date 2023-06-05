@@ -51,16 +51,14 @@ class GeneralManager(metaclass=MetaSingleton):
                                 order,
                                 length
                         ) is None:
-                            print(self.__delivery_manager.get_order_status(
-                                order
-                            ))
+                            print(self.__delivery_manager.get_orders_status())
                             time.sleep(5)
                             delivery_manager.tick()
                     print('Доставщик найден! Вам доставит еду Матвей пешком')
                     _ = input()
                     System.clear_terminal()
             elif chose == 2:
-                print(self.__delivery_manager.get_order_status(order))
+                print(self.__delivery_manager.get_orders_status())
                 _ = input()
                 System.clear_terminal()
             self.__delivery_manager.tick()

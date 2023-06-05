@@ -14,10 +14,16 @@ class DeliveryManager(metaclass=MetaSingleton):
         self.__areas: list[Area] = [Area() for _ in range(3)]
         # TODO: обсудить программу заполнения матрицы районов
         self.__matrix_areas_location: list[list[int]] = [[2], [2], [0, 1]]
-        self.__deliveryman_status: Dict[str, tuple[Order, DeliveryMan]] = {}
 
-    def get_order_status(self, order: Order):
-        return self.__areas[order.area].get_order_status(order)
+    def get_orders_status(self) -> \
+            Optional[list[list[str], list[tuple[str, int]]]]:
+        result_orders: list[list[str], list[tuple[str, int]]] = []
+        for area in self.__areas:
+            orders: [tuple[list[str], list[tuple[str, int]]]] = \
+                area.get_orders_status()
+            result_orders[0].extend(orders[0])
+            result_orders[1].extend(orders[1])
+        return result_orders
 
     def accept_order(self, order: Order, road_length: float):
         return self.__find_deliveryman(order, road_length) is DeliveryMan
@@ -40,7 +46,7 @@ class DeliveryManager(metaclass=MetaSingleton):
         while idx != len(self.__matrix_areas_location[order.area]) and not \
                 isinstance(deliveryman, DeliveryMan):
             deliveryman = self.__areas[self.__matrix_areas_location[order.area][
-                idx]].find_delivaryman(CAR_DISTANCE, order)
+               idx]].find_delivaryman(road_length, order)
             is_another_area = True
             idx += 1
         if isinstance(deliveryman, DeliveryMan):

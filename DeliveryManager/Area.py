@@ -14,7 +14,7 @@ def define_initial_transport_idx(distance: float, order: Order) -> int:
     CAR - 3
     """
     transport_idx: int = 0
-    if order.weight < 15:
+    if order.weight < 15000:
         while distance > DISTANCES[transport_idx] and transport_idx < 3:
             transport_idx += 1
     else:
@@ -43,13 +43,19 @@ class Area(object):
                 if deliveryman.is_free:
                     self.area_delivery[key]['inactive'].append(deliveryman)
 
-    def get_order_status(self, order: Order) -> Optional[str]:
-        if order.id[0] in self.__deliveryman_status.keys():
-            return f'Заказ: {order.id[0]} - ' \
-                   f'оставшееся время доставки: ' \
-                   f'{self.__deliveryman_status[order.id[0]][1].time_left}'
-        else:
-            return None
+    def get_orders_status(self) -> \
+            Optional[tuple[list[str], list[tuple[str, int]]]]:
+        ready_orders: list[str] = []
+        active_orders: list[tuple[str, int]] = []
+        for order_id in self.__deliveryman_status.keys():
+            if self.__deliveryman_status[order_id][1].time_left <= 0:
+                ready_orders.append(order_id)
+                self.__deliveryman_status.pop(order_id)
+            else:
+                active_orders.append(
+                    (order_id,
+                     int(self.__deliveryman_status[order_id][1].time_left)))
+        return ready_orders, active_orders
 
     def add_deliveryman(self, deliveryman: DeliveryMan):
         self.area_delivery[deliveryman.transport]['inactive'].append(
