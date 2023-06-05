@@ -43,8 +43,9 @@ class GeneralManager(metaclass=MetaSingleton):
         while True:
             print('Меню:',
                   '1. Сделать новый заказ',
-                  '2. Уточнить статус заказов', sep='\n')
-            chose = System.validate_integer_in_range(1, 2)
+                  '2. Уточнить статус заказов',
+                  '3. Выйти', sep='\n')
+            chose = System.validate_integer_in_range(1, 3)
             System.clear_terminal()
             if chose == 1:
                 order = self.__grocery_manager.make_order()
@@ -71,4 +72,6 @@ class GeneralManager(metaclass=MetaSingleton):
                 print(self.__get_order_status_str())
                 _ = input()
                 System.clear_terminal()
+            elif chose == 3:
+                return
             self.__delivery_manager.tick()
