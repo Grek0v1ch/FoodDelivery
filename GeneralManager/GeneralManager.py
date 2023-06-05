@@ -1,5 +1,6 @@
 import json
 import random
+import time
 
 from DeliveryManager.DeliveryManager import DeliveryManager
 from DeliveryManager.DeliveryMan import DeliveryMan
@@ -50,20 +51,20 @@ class GeneralManager(metaclass=MetaSingleton):
                 if order.is_valid_order:
                     print('Заказ принят. Ищем доставщика...')
                     length = random.randint(0, 3000)
-                    if self.__delivery_manager.accept_order(
+                    if not self.__delivery_manager.accept_order(
                             order,
                             length
-                    ) is None:
+                    ):
                         print('Свободных доставщиков в вашем районе пока нет, '
                               'идет поиск...')
-                        while self.__delivery_manager.accept_order(
+                        while not self.__delivery_manager.accept_order(
                                 order,
                                 length
-                        ) is None:
+                        ):
                             print(self.__get_order_status_str())
                             time.sleep(5)
-                            delivery_manager.tick()
-                    print('Доставщик найден! Вам доставит еду Матвей')
+                            self.__delivery_manager.tick()
+                    print('Доставщик найден!')
                     _ = input()
                     System.clear_terminal()
             elif chose == 2:

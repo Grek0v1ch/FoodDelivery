@@ -27,7 +27,8 @@ class DeliveryManager(metaclass=MetaSingleton):
         return result_orders
 
     def accept_order(self, order: Order, road_length: float):
-        return self.__find_deliveryman(order, road_length) is DeliveryMan
+        return isinstance(self.__find_deliveryman(order, road_length),
+                          DeliveryMan)
 
     def add_deliveryman(self, deliveryman: DeliveryMan) -> None:
         self.__areas[deliveryman.area].add_deliveryman(deliveryman)
