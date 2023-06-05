@@ -28,6 +28,16 @@ class GeneralManager(metaclass=MetaSingleton):
                               text[i]["order_time"], text[i]["time_start"])
             self.__delivery_manager.add_deliveryman(man)
 
+    def __get_order_status_str(self) -> str:
+        result = []
+        order_status = self.__delivery_manager.get_orders_status()
+        for status in order_status[0]:
+            result.append(f'Заказ {status} выполнен!')
+        for status in order_status[1]:
+            result.append(f'Оставшееся время доставки заказа {status[0]}: '
+                          f'{status[1]}')
+        return '\n'.join(result)
+
     def start(self):
         while True:
             print('Меню:',
@@ -50,14 +60,14 @@ class GeneralManager(metaclass=MetaSingleton):
                                 order,
                                 length
                         ) is None:
-                            print(self.__delivery_manager.get_orders_status())
+                            print(self.__get_order_status_str())
                             time.sleep(5)
                             delivery_manager.tick()
-                    print('Доставщик найден! Вам доставит еду Матвей пешком')
+                    print('Доставщик найден! Вам доставит еду Матвей')
                     _ = input()
                     System.clear_terminal()
             elif chose == 2:
-                print(self.__delivery_manager.get_orders_status())
+                print(self.__get_order_status_str())
                 _ = input()
                 System.clear_terminal()
             self.__delivery_manager.tick()
