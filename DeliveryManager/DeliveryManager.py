@@ -6,8 +6,6 @@ from DeliveryManager.Area import Area
 from MetaSingleton import MetaSingleton
 from Order.Order import Order
 
-CAR_DISTANCE = 3000
-
 
 class DeliveryManager(metaclass=MetaSingleton):
     def __init__(self):
@@ -16,12 +14,12 @@ class DeliveryManager(metaclass=MetaSingleton):
         # TODO: обсудить программу заполнения матрицы районов
         self.__matrix_areas_location: list[list[int]] = [[2], [2], [0, 1]]
 
-    def get_orders_status(self) -> \
-           Optional[tuple[list[str], list[tuple[str, int]]]]:
-        result_orders: tuple[list[str], list[tuple[str, int]]] = [], []
+    def get_orders_status(
+            self
+    ) -> tuple[list[tuple[str, str]], list[tuple[tuple[str, str], int]]]:
+        result_orders = [], []
         for area in self.__areas:
-            orders: tuple[list[str], list[tuple[str, int]]] = \
-                area.get_orders_status()
+            orders = area.get_orders_status()
             result_orders[0].extend(orders[0])
             result_orders[1].extend(orders[1])
         return result_orders
@@ -31,25 +29,28 @@ class DeliveryManager(metaclass=MetaSingleton):
         return isinstance(self.__find_deliveryman(order, road_length),
                           DeliveryMan)
 
-    def add_deliveryman(self, deliveryman: DeliveryMan) -> None:
+    def add_deliveryman(self, deliveryman: DeliveryMan):
         self.__areas[deliveryman.area].add_deliveryman(deliveryman)
 
-    def tick(self) -> None:
+    def tick(self):
         for area in self.__areas:
             area.tick()
 
-    def __find_deliveryman(self, order: Order, road_length: float) -> \
-            Optional[DeliveryMan]:
-        """if we can't find deliveryman in area we start find him in neighboring area"""
+    def __find_deliveryman(
+            self, order: Order, road_length: float
+    ) -> Optional[DeliveryMan]:
+        # if we can't find deliveryman in area we start find him in
+        # neighboring area
         self.tick()
-        deliveryman = self.__areas[order.area].find_delivaryman(road_length,
+        deliveryman = self.__areas[order.area].find_deliveryman(road_length,
                                                                 order)
         idx: int = 0
         is_another_area: bool = False
-        while idx != len(self.__matrix_areas_location[order.area]) and not \
-                isinstance(deliveryman, DeliveryMan):
-            deliveryman = self.__areas[self.__matrix_areas_location[order.area][
-               idx]].find_delivaryman(road_length, order)
+        while idx != len(self.__matrix_areas_location[order.area]) and \
+                not isinstance(deliveryman, DeliveryMan):
+            deliveryman = self.__areas[
+                self.__matrix_areas_location[order.area][idx]
+            ].find_deliveryman(road_length, order)
             is_another_area = True
             idx += 1
         if isinstance(deliveryman, DeliveryMan):
@@ -60,6 +61,7 @@ class DeliveryManager(metaclass=MetaSingleton):
                 # random нужен, чтоб симулировать длину дороги из другого
                 # района для водителя
                 # road_length - meters
-                deliveryman.timer_start(road_length + random.randint(0, 2000),
-                                        order.id[0])
+                deliveryman.timer_start(
+                    road_length + random.randint(0, 2000), order.id[0]
+                )
         return deliveryman

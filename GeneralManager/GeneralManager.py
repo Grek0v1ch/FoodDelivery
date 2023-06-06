@@ -12,17 +12,17 @@ from MetaSingleton import MetaSingleton
 
 
 class GeneralManager(metaclass=MetaSingleton):
-    def __init__(self):
+    def __init__(self, file_path: str):
         self.__delivery_manager: DeliveryManager = DeliveryManager()
         self.__grocery_manager: GroceryRetailerManager = \
             GroceryRetailerManager()
-        self.__load_retailers('resources/GroceryRetailers.json')
-        self.__load_delivery_mans('DeliveryMans.json')
+        self.__load_retailers(file_path + 'GroceryRetailers.json')
+        self.__load_delivery_mans(file_path + 'DeliveryMans.json')
 
-    def __load_retailers(self, file_path: str) -> None:
+    def __load_retailers(self, file_path: str):
         self.__grocery_manager.load_json(file_path)
 
-    def __load_delivery_mans(self, file_path: str) -> None:
+    def __load_delivery_mans(self, file_path: str):
         with open(file_path, 'r') as f:
             text = json.load(f)
         for i in range(len(text)):

@@ -1,4 +1,5 @@
 from typing import Dict, Optional
+
 from DeliveryManager.DeliveryMan import DeliveryMan
 from Order.Order import Order
 
@@ -22,7 +23,7 @@ def define_initial_transport_idx(distance: float, order: Order) -> int:
     return transport_idx
 
 
-class Area(object):
+class Area:
     def __init__(self):
         self.area_delivery: Dict[str, Dict[str, list[DeliveryMan]]] = \
             {'AFOOT': {'active': [],
@@ -44,30 +45,36 @@ class Area(object):
                 deliveryman.tick()
                 if deliveryman.is_free:
                     self.area_delivery[key]['inactive'].append(deliveryman)
-                    self.ready_orders.append((deliveryman.order_id,
-                                              deliveryman.id[0]))
+                    self.ready_orders.append(
+                        (deliveryman.order_id, deliveryman.id[0])
+                    )
                     self.__deliveryman_status.pop(deliveryman.order_id)
                 else:
                     save_deliveryman.append(deliveryman)
             self.area_delivery[key]['active'].clear()
             self.area_delivery[key]['active'] = save_deliveryman
 
-    def get_orders_status(self):
+    def get_orders_status(
+            self
+    ) -> tuple[list[tuple[str, str]], list[tuple[tuple[str, str], int]]]:
         ready_orders: list[tuple[str, str]] = self.ready_orders.copy()
         self.ready_orders.clear()
         active_orders: list[tuple[tuple[str, str], int]] = []
         for order_id in self.__deliveryman_status.keys():
-            active_orders.append(
-                ((order_id, self.__deliveryman_status[order_id][1].id[0]),
-                 int(self.__deliveryman_status[order_id][1].time_left)))
+            active_orders.append((
+                (order_id, self.__deliveryman_status[order_id][1].id[0]),
+                int(self.__deliveryman_status[order_id][1].time_left)
+            ))
         return ready_orders, active_orders
 
     def add_deliveryman(self, deliveryman: DeliveryMan):
         self.area_delivery[deliveryman.transport]['inactive'].append(
-            deliveryman)
+            deliveryman
+        )
 
-    def find_delivaryman(self, road_length: float, order: Order) -> Optional[
-        DeliveryMan]:
+    def find_deliveryman(
+            self, road_length: float, order: Order
+    ) -> Optional[DeliveryMan]:
         """find deliveryman based on path length"""
         idx: int = define_initial_transport_idx(road_length, order)
 

@@ -3,12 +3,13 @@ import os
 
 class System:
     @staticmethod
-    def validate_integer_in_range(a: int, b: int) -> int:
+    def validate_integer_in_range(left: int, right: int) -> int:
         while True:
-            value = input(f'Введите целое число в диапазоне от {a} до {b}: ')
+            value = input(f'Введите целое число в диапазоне от {left} до '
+                          f'{right}: ')
             try:
                 int_value = int(value)
-                if a <= int_value <= b:
+                if left <= int_value <= right:
                     return int_value
                 else:
                     print('Введенное значение не входит в диапазон.'

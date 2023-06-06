@@ -8,7 +8,7 @@ from Order.Product import Product
 from System import System
 
 
-class GroceryRetailerManager:
+class GroceryRetailerManager(metaclass=MetaSingleton):
     def __init__(self):
         self.__retailers: list[GroceryRetailer] = []
 
@@ -86,7 +86,7 @@ class GroceryRetailerManager:
         else:
             return None
 
-    def __product_selection_menu(self, retailer_idx: int):
+    def __product_selection_menu(self, retailer_idx: int) -> Optional[int]:
         print('Меню заведения: ',
               '0. Перейти в корзину',
               self.__get_retailers_menu(retailer_idx),
