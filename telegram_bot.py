@@ -5,7 +5,7 @@ from DeliveryManager.DeliveryMan import DeliveryMan
 from DeliveryManager.DeliveryManager import DeliveryManager
 
 # Создать объект бота
-bot = telebot.TeleBot('6283121546:AAEIneaKXB6x74vKw2T0-ocFVe7KL9wiNd4')
+bot = telebot.TeleBot('6003622347:AAHPaVsR8uZEY7PtREcKhO7bGJF2edtXmBE')
 MANAGER = DeliveryManager()
 STAT = {}
 NOW_ASK = [0]
