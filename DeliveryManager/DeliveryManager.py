@@ -27,6 +27,7 @@ class DeliveryManager(metaclass=MetaSingleton):
         return result_orders
 
     def accept_order(self, order: Order, road_length: float):
+        self.tick()
         return isinstance(self.__find_deliveryman(order, road_length),
                           DeliveryMan)
 
@@ -54,10 +55,11 @@ class DeliveryManager(metaclass=MetaSingleton):
         if isinstance(deliveryman, DeliveryMan):
             deliveryman.current_order = True
             if not is_another_area:
-                deliveryman.timer_start(road_length)
+                deliveryman.timer_start(road_length, order.id[0])
             else:
                 # random нужен, чтоб симулировать длину дороги из другого
                 # района для водителя
                 # road_length - meters
-                deliveryman.timer_start(road_length + random.randint(0, 2000))
+                deliveryman.timer_start(road_length + random.randint(0, 2000),
+                                        order.id[0])
         return deliveryman

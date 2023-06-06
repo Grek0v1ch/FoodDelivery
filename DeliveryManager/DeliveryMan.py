@@ -13,10 +13,12 @@ class TransportType(Enum):
 
 @dataclass
 class DeliveryMan:
+    id: tuple[str]
     area: int
     current_order: bool  # Order
     transport: str
     order_time: float
+    order_id: str
     time_start: float
 
     @property
@@ -27,7 +29,8 @@ class DeliveryMan:
     def time_left(self):
         return self.order_time - (time.time() - self.time_start)
 
-    def timer_start(self, road_length: float) -> None:
+    def timer_start(self, road_length: float, order_id: str) -> None:
+        self.order_id = order_id
         self.time_start = time.time()
         self.order_time = road_length / TransportType[self.transport].value
 
