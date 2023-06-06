@@ -2,6 +2,7 @@ import json
 import random
 import time
 
+from CreatorID import CreatorID
 from DeliveryManager.DeliveryManager import DeliveryManager
 from DeliveryManager.DeliveryMan import DeliveryMan
 from GroceryRetailer.GroceryRetailerManager import GroceryRetailerManager
@@ -31,6 +32,7 @@ class GeneralManager(metaclass=MetaSingleton):
                 text[i]["current_order"],
                 text[i]["transport"],
                 text[i]["order_time"],
+                text[i]["order_id"],
                 text[i]["time_start"]
             )
             self.__delivery_manager.add_deliveryman(man)
@@ -39,11 +41,12 @@ class GeneralManager(metaclass=MetaSingleton):
         result = []
         order_status = self.__delivery_manager.get_orders_status()
         for status in order_status[0]:
-            result.append(f'Заказ {status[1][-8:]} выполнен доставщиком {status[0][-8:]}!')
+            result.append(f'Заказ {status[0]} выполнен доставщиком'
+                          f' {status[1]}!')
         for status in order_status[1]:
-            result.append(f'Оставшееся время доставки заказа {status[0][1][-8:]}'
+            result.append(f'Оставшееся время доставки заказа {status[0][0]}'
                           f': {status[1]}\n'
-                          f'Доставщик {status[0][0][-8:]}')
+                          f'Доставщик {status[0][1]}')
         return '\n'.join(result)
 
     def start(self):
