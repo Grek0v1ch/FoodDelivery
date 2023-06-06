@@ -33,10 +33,10 @@ class GeneralManager(metaclass=MetaSingleton):
         result = []
         order_status = self.__delivery_manager.get_orders_status()
         for status in order_status[0]:
-            result.append(f'Заказ {status} выполнен!')
+            result.append(f'Заказ {status[-8:]} выполнен!')
         for status in order_status[1]:
-            result.append(f'Оставшееся время доставки заказа {status[0]}: '
-                          f'{status[1]}')
+            result.append(f'Оставшееся время доставки заказа {status[0][-8:]}'
+                          f': {status[1]}')
         return '\n'.join(result)
 
     def start(self):
@@ -50,7 +50,8 @@ class GeneralManager(metaclass=MetaSingleton):
             if chose == 1:
                 order = self.__grocery_manager.make_order()
                 if order.is_valid_order:
-                    print('Заказ принят. Ищем доставщика...')
+                    print(f'Заказ принят. Id заказа {order.id[0][-8:]}.\n'
+                          f'Ищем доставщика...')
                     length = random.randint(0, 3000)
                     if not self.__delivery_manager.accept_order(
                             order,
