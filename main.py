@@ -1,11 +1,15 @@
-from GroceryRetailer.GroceryRetailerManager import GroceryRetailerManager
+import threading
+
+from telegram_bot import bot
+from GeneralManager.GeneralManager import GeneralManager
 
 
 def main():
-    manager = GroceryRetailerManager()
-    manager.load_json('resources/GroceryRetailers.json')
-    order = manager.make_order()
-    print(order)
+    manager = GeneralManager('resources/')
+    t = threading.Thread(target=bot.polling)
+    t.start()
+    c = threading.Thread(target=manager.start)
+    c.start()
 
 
 if __name__ == "__main__":
