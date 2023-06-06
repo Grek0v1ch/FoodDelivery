@@ -8,11 +8,12 @@ DISTANCES: tuple = (850, 1700, 3000)
 
 def define_initial_transport_idx(distance: float, order: Order) -> int:
     """
-    Transport's idx:
+    Индексы транспорта:
     AFOOT - 0
     BICYCLE - 1
     SCOOTER - 2
     CAR - 3
+    Метод возвращает необходимый для заказа транспорт
     """
     transport_idx: int = 0
     if order.weight < 15000:
@@ -24,6 +25,7 @@ def define_initial_transport_idx(distance: float, order: Order) -> int:
 
 
 class Area:
+    """Класс района в городе"""
     def __init__(self):
         self.area_delivery: Dict[str, Dict[str, list[DeliveryMan]]] = \
             {'AFOOT': {'active': [],
@@ -35,10 +37,12 @@ class Area:
              'CAR': {'active': [],
                      'inactive': []}
              }
+        # словарь для хранения доставщика и заказа по id заказа
         self.__deliveryman_status: Dict[str, tuple[Order, DeliveryMan]] = {}
         self.ready_orders: list[tuple[str, str]] = []
 
     def tick(self):
+        """Метод меняет состояние доставщиков"""
         for key in self.area_delivery.keys():
             save_deliveryman: list[DeliveryMan] = []
             for deliveryman in self.area_delivery[key]['active']:
@@ -57,6 +61,7 @@ class Area:
     def get_orders_status(
             self
     ) -> tuple[list[tuple[str, str]], list[tuple[tuple[str, str], int]]]:
+        """Метод возвращает состояние по всем доставщикам в районе"""
         ready_orders: list[tuple[str, str]] = self.ready_orders.copy()
         self.ready_orders.clear()
         active_orders: list[tuple[tuple[str, str], int]] = []
@@ -68,6 +73,7 @@ class Area:
         return ready_orders, active_orders
 
     def add_deliveryman(self, deliveryman: DeliveryMan):
+        """Метод добавляет доставщика"""
         self.area_delivery[deliveryman.transport]['inactive'].append(
             deliveryman
         )
@@ -75,7 +81,7 @@ class Area:
     def find_deliveryman(
             self, road_length: float, order: Order
     ) -> Optional[DeliveryMan]:
-        """find deliveryman based on path length"""
+        """Метод поиска доставщика, основываясь на длине дороги и весе"""
         idx: int = define_initial_transport_idx(road_length, order)
 
         for key in list(self.area_delivery.keys())[idx:]:
