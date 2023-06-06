@@ -6,6 +6,7 @@ from Order.Order import Order
 from Order.OrderBuilder import OrderBuilder
 from Order.Product import Product
 from System import System
+from MetaSingleton import MetaSingleton
 
 
 class GroceryRetailerManager(metaclass=MetaSingleton):
