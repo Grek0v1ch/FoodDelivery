@@ -9,6 +9,7 @@ from System import System
 
 
 class GroceryRetailerManager(metaclass=MetaSingleton):
+    """Класс-менеджер магазинов и ресторанов"""
     def __init__(self):
         self.__retailers: list[GroceryRetailer] = []
 
@@ -17,9 +18,11 @@ class GroceryRetailerManager(metaclass=MetaSingleton):
             [str(item) for item in self.__retailers])
 
     def add_grocery_retailer(self, retailer: GroceryRetailer):
+        """Метод добавляет новый магазин или ресторан в менеджер"""
         self.__retailers.append(retailer)
 
     def load_json(self, file_path: str):
+        """Метод загружает информацию о магазинах из файла .json"""
         with open(file_path, 'r') as file:
             data = json.load(file)
         for retailer in data:
@@ -33,7 +36,27 @@ class GroceryRetailerManager(metaclass=MetaSingleton):
                 )
             )
 
+    @staticmethod
+    def __load_product_list(data: list[dict]) -> list[Product]:
+        """Метод загружает список продуктов"""
+        result: list[Product] = []
+        for product in data:
+            result.append(
+                Product(
+                    name=product['name'],
+                    price=product['price'],
+                    weight=product['weight'],
+                    composition=product['composition'],
+                    time_cooking=product['time_cooking']
+                )
+            )
+        return result
+
     def make_order(self) -> Order:
+        """
+        Метод формирует заказ. Взаимодействие с пользователем осуществляется
+        через консоль
+        """
         self.__update_retailers()
         builder = OrderBuilder()
         retailer_idx = self.__retailer_selection_menu()
@@ -76,6 +99,10 @@ class GroceryRetailerManager(metaclass=MetaSingleton):
         return builder.order
 
     def __retailer_selection_menu(self) -> Optional[int]:
+        """
+        Метод выводит меню выбора магазина или ресторана и принимает ответ
+        пользователя
+        """
         retailers_name = self.__get_retailers_name_list()
         print(f'Выберите заведение, из которого будет оформлен заказ',
               retailers_name,
@@ -87,6 +114,10 @@ class GroceryRetailerManager(metaclass=MetaSingleton):
             return None
 
     def __product_selection_menu(self, retailer_idx: int) -> Optional[int]:
+        """
+        Метод выводит меню выбора позиций в магазине или ресторане и принимает
+        ответ пользователя
+        """
         print('Меню заведения: ',
               '0. Перейти в корзину',
               self.__get_retailers_menu(retailer_idx),
@@ -104,32 +135,23 @@ class GroceryRetailerManager(metaclass=MetaSingleton):
             return None
 
     def __update_retailers(self):
+        """Метод обновляет меню во всех магазинах и ресторанах"""
         for retailer in self.__retailers:
             retailer.updating_menu()
 
     def __get_retailers_name_list(self) -> str:
+        """Метод формирует список всех ресторанов и магазинов в виде строки"""
         result = []
         for number, retailer in enumerate(self.__retailers):
             result.append(f'{number + 1}. {retailer.name}')
         return '\n'.join(result)
 
     def __get_retailers_menu(self, idx: int) -> str:
+        """
+        Метод формирует список всех позиций в магазине или ресторане в виде
+        строки
+        """
         result = []
         for number, product in enumerate(self.__retailers[idx].menu):
             result.append(f'{number + 1}. {product}')
         return '\n'.join(result)
-
-    @staticmethod
-    def __load_product_list(data: list[dict]) -> list[Product]:
-        result: list[Product] = []
-        for product in data:
-            result.append(
-                Product(
-                    name=product['name'],
-                    price=product['price'],
-                    weight=product['weight'],
-                    composition=product['composition'],
-                    time_cooking=product['time_cooking']
-                )
-            )
-        return result

@@ -6,6 +6,7 @@ from Order.Product import Product
 
 
 class GroceryRetailer:
+    """Класс продуктового ритейлера (магазина или ресторана)"""
     def __init__(
             self, name: str,
             grocery_retailer_type: GroceryRetailerType,
@@ -47,6 +48,10 @@ class GroceryRetailer:
         return self.__area
 
     def updating_menu(self):
+        """ Метод обновляет меню"""
+        # Обновление меню происходит рандомно: сначала выбираем какой продукт
+        # вернуть в меню, потом удаляем что-то из меню, и возвращаем в меню
+        # выбранный в начале продукт
         temp = randint(0, 1)
         selected_product_stop_list = None
         # убираем из стоп листа
@@ -63,6 +68,7 @@ class GroceryRetailer:
                     randint(0, len(self.__menu) - 1)]
                 self.__stop_list.append(selected_product_menu)
                 self.__menu.remove(selected_product_menu)
+        # возвращаем в меню
         if selected_product_stop_list is not None:
             self.__menu.append(selected_product_stop_list)
         return self.__menu
