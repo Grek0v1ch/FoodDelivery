@@ -13,6 +13,7 @@ class TransportType(Enum):
 
 @dataclass
 class DeliveryMan:
+    id: tuple[str]
     area: int
     current_order: bool  # Order
     transport: str
