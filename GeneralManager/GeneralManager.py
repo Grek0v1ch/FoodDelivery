@@ -62,7 +62,7 @@ class GeneralManager(metaclass=MetaSingleton):
                 if order.is_valid_order:
                     print(f'Заказ принят. Id заказа {order.id[0][-8:]}.\n'
                           f'Ищем доставщика...')
-                    length = random.randint(0, 1000)
+                    length = random.randint(0, 1)
                     if not self.__delivery_manager.accept_order(
                             order,
                             length

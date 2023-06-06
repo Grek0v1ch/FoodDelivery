@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from enum import Enum
 import time
 
+import telegram_bot
+
 
 class TransportType(Enum):
     """Скорость всех видов транспорта доставщиков"""
@@ -30,7 +32,10 @@ class DeliveryMan:
     @property
     def time_left(self) -> float:
         """Метод определяет оставшееся время до выполнения заказа"""
-        return self.order_time - (time.time() - self.time_start)
+        if self.order_time - (time.time() - self.time_start) < 0:
+            return 0
+        else:
+            return self.order_time - (time.time() - self.time_start)
 
     def timer_start(self, road_length: float, order_id: str):
         """Метод отсчитывает начало выполнения заказа"""
@@ -41,4 +46,8 @@ class DeliveryMan:
     def tick(self) -> None:
         """Метод определяет доставлен заказ или нет"""
         if time.time() - self.time_start >= self.order_time:
-            self.current_order = False
+            telegram_bot.ask_deliveryman_to_skip(int(self.id[0]))
+            if telegram_bot.CLOSE_ANS[int(self.id[0])]:
+                self.current_order = False
+            else:
+                self.order_time += 30

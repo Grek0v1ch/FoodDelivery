@@ -9,6 +9,7 @@ from Order.Order import Order
 
 class DeliveryManager(metaclass=MetaSingleton):
     """Класс менеджер доставщиков"""
+
     def __init__(self):
         self.__areas: list[Area] = [Area() for _ in range(3)]
         self.__matrix_areas_location: list[list[int]] = [[2], [2], [0, 1]]
@@ -64,6 +65,6 @@ class DeliveryManager(metaclass=MetaSingleton):
                 # района для водителя
                 # road_length - meters
                 deliveryman.timer_start(
-                    road_length + random.randint(0, 2000), order.id[0]
+                    road_length + random.randint(0, 200), order.id[0]
                 )
         return deliveryman

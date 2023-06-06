@@ -1,8 +1,10 @@
 from typing import Dict, Optional
 
+import telegram_bot
 from DeliveryManager.DeliveryMan import DeliveryMan
 from Order.Order import Order
-
+# from telegram_bot import ACCEPT_ANS, ask_deliveryman
+import time
 DISTANCES: tuple = (850, 1700, 3000)
 
 
@@ -83,11 +85,25 @@ class Area:
     ) -> Optional[DeliveryMan]:
         """Метод поиска доставщика, основываясь на длине дороги и весе"""
         idx: int = define_initial_transport_idx(road_length, order)
-
+        if order.id not in telegram_bot.ORDER_QUEUE:
+            telegram_bot.ORDER_QUEUE.append(order.id)
+        if order.id not in telegram_bot.UNWANTED_ORDER.keys():
+            telegram_bot.UNWANTED_ORDER[order.id] = []
         for key in list(self.area_delivery.keys())[idx:]:
-            if len(self.area_delivery[key]['inactive']):
-                deliveryman = self.area_delivery[key]['inactive'].pop()
-                self.area_delivery[key]['active'].append(deliveryman)
-                self.__deliveryman_status[order.id[0]] = (order, deliveryman)
-                return deliveryman
+            for idx, deliveryman in enumerate(self.area_delivery[key]
+                                              ['inactive']):
+                telegram_bot.NOW_ASK[0] = int(deliveryman.id[0])
+                telegram_bot.ask_deliveryman(int(deliveryman.id[0]),
+                                             road_length)
+                time.sleep(10)
+                if telegram_bot.ACCEPT_ANS[int(deliveryman.id[0])]:
+                    deliveryman = self.area_delivery[key]['inactive'][idx]
+                    del self.area_delivery[key]['inactive'][idx]
+                    self.area_delivery[key]['active'].append(deliveryman)
+                    self.__deliveryman_status[order.id[0]] = (order, deliveryman)
+                    telegram_bot.CLOSE_ANS[int(deliveryman.id[0])] = False
+                    telegram_bot.UNWANTED_ORDER.pop(order.id)
+                    telegram_bot.ORDER_QUEUE.pop(0)
+                    return deliveryman
+
         return None
